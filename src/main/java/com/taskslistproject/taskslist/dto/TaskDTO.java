@@ -5,10 +5,6 @@ package com.taskslistproject.taskslist.dto;
 
 import javax.validation.constraints.NotNull;
 
-import com.taskslistproject.taskslist.domain.Status;
-import com.taskslistproject.taskslist.domain.Tasklist;
-import com.taskslistproject.taskslist.domain.User;
-
 /**
  * @author Esteban Triviño
  * This class is created because of the implementation of the DTO Design Pattern
