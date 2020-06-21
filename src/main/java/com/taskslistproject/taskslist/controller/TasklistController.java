@@ -24,7 +24,7 @@ import com.taskslistproject.taskslist.service.TasklistService;
 
 /**
  * @author Esteban Triviño
- *
+ * Rest controller for Tasklist
  */
 @RestController
 @RequestMapping("/tasklist/")
@@ -41,12 +41,13 @@ public class TasklistController {
 	@Autowired
 	TasklistMapper tasklistMapper;
 	
+	/**
+	 * This method receives a Tasklist and try to save it into the system.
+	 * @param tasklistDTO
+	 * @return
+	 */
 	@RequestMapping(value="save",method=RequestMethod.POST)
-    public ResponseEntity<?> saveTasklist(@RequestBody TasklistDTO tasklistDTO){
-		/*
-		 * This method receives a Tasklist and try to save it
-		 * into the system.
-		 */
+    public ResponseEntity<?> save(@RequestBody TasklistDTO tasklistDTO){
 		
         try {
         	
@@ -72,14 +73,16 @@ public class TasklistController {
 		}
 	}
     
-    
+    /**
+	 * This method search an tasklist with the indicated id.
+	 * If the tasklist exists, then retuns the takslist as a JSON,
+	 * else, creates a ResponseMessage and returns it as a JSON.
+	 * 
+     * @param id
+     * @return
+     */
 	@GetMapping("findById/{tasklistId}")
 	public ResponseEntity<?> findById(@PathVariable("tasklistId") Integer id) {
-		/*
-		 * This method search an taks list with the indicated id.
-		 * If the tasklist exists, then retuns the takslist as a JSON,
-		 * else, creates a ResponseMessage and returns it as a JSON.
-		 */
 		
 		//Search the takslist by Id
 		Optional<Tasklist> tasklistOptional = tasklistService.findById(id);

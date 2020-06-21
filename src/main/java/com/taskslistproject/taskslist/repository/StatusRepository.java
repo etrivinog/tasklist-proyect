@@ -12,7 +12,7 @@ import com.taskslistproject.taskslist.domain.Status;
  * This interface is used by Spring Data JPA to auto-generate the 
  * implemantation of the repository
  * 
- * The implementation of this class uses the Singleton design pattern
+ * The implementation of this interface uses the Singleton design pattern
  * which is implemented by Spring Data JPA by default.
  * 
  */

@@ -12,7 +12,7 @@ import com.taskslistproject.taskslist.dto.TasklistDTO;
 
 /**
  * @author Esteban Triviño
- * This interface is used by the mapstruct library to map the class Status
+ * This interface is used by the mapstruct library to map the class Tasklist
  * into an equivalent class to be show as JSON
  * 
  * The declared methods within the interface are implemented by mapstruct

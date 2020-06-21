@@ -85,6 +85,7 @@ public class UserServiceImpl implements UserService {
 	}
 	
 	@Override
+	@Transactional(propagation = Propagation.REQUIRED, rollbackFor = Exception.class)
 	public void deleteById(Integer id) throws Exception {
 		
 		//Verify is the id is valid and that the user does exist
@@ -114,6 +115,7 @@ public class UserServiceImpl implements UserService {
 	
 	//Find an user by email
 	@Override
+	@Transactional(readOnly = true)
 	public Optional<User> findByEmail(String email) {
 		return userRepository.findByEmail(email);
 	}

@@ -29,7 +29,7 @@ public class TasklistServiceImpl implements TasklistService {
 	@Override
 	@Transactional(propagation = Propagation.REQUIRED, rollbackFor = Exception.class)
 	public Tasklist save(Tasklist entity) throws Exception {
-
+		
 		//Verify if there are a tasklist with the same name
 		if (tasklistRepository.findByName(entity.getName()).isPresent() == true) {
 			
@@ -54,7 +54,7 @@ public class TasklistServiceImpl implements TasklistService {
 	@Override
 	@Transactional(propagation = Propagation.REQUIRED, rollbackFor = Exception.class)
 	public Tasklist update(Tasklist entity) throws Exception {
-
+		
 		//Verify if the tasklist does exist
 		if (tasklistRepository.findById(entity.getTasklistId()).isPresent() == false) {
 			//If the tasklist does not exist
@@ -65,8 +65,9 @@ public class TasklistServiceImpl implements TasklistService {
 	}
 
 	@Override
+	@Transactional(propagation = Propagation.REQUIRED, rollbackFor = Exception.class)
 	public void delete(Tasklist entity) throws Exception {
-
+		
 		//Verify if the tasklist exists
 		if (tasklistRepository.findById(entity.getTasklistId()).isPresent() == false) {
 			//If the tasklist does not exist
@@ -81,13 +82,15 @@ public class TasklistServiceImpl implements TasklistService {
 			throw new Exception("The tasklist has tasks and cannot be deleted!");
 		}
 		
+		tasklistRepository.delete(entity);
 		
 	}
 
 	@Override
+	@Transactional(propagation = Propagation.REQUIRED, rollbackFor = Exception.class)
 	public void deleteById(Integer id) throws Exception {
-
-		//Verify is the id is valid and that the user does exist
+		
+		//Verify either if the id is valid or that the user tasklist does not exist
 		if(id == null || id < 1) {
 			throw new Exception("The indicated ID is not valid.");
 		}else if(!tasklistRepository.findById(id).isPresent()) {
