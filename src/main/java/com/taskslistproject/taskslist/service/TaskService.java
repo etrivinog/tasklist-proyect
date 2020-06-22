@@ -13,9 +13,9 @@ public interface TaskService extends GenericService<Task, Integer> {
 
 	/***
 	 * Returns a list of tasks filtered by tasklist.
-	 * @return
+	 * @return List<Task>
 	 * @throws Exception 
 	 */
-	List<Task> findByTasklist(Integer tasklist);
+	List<Task> findByTasklist(Integer tasklist) throws Exception;
 	
 }

@@ -190,7 +190,17 @@ public class TaskController {
 	public ResponseEntity<?> findByTasklist(@PathVariable("tasklistId") Integer tasklistID){
 
 		//Gets the list of tasks filtered by tasklist
-		List<Task> tasks = taskService.findByTasklist(tasklistID);
+		List<Task> tasks;
+		try {
+			tasks = taskService.findByTasklist(tasklistID);
+		} catch (Exception e) {
+			e.printStackTrace();
+			return ResponseEntity.
+					badRequest().
+					body(
+							new ResponseMessage("400", e.getMessage())
+						);
+		}
 		
 		//Converts task to taskDTO
 		List<TaskDTO> tasksDTO = taskMapper.toTaskDTOs(tasks);

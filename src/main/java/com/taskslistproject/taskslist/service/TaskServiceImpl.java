@@ -12,6 +12,7 @@ import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.taskslistproject.taskslist.domain.Task;
+import com.taskslistproject.taskslist.domain.Tasklist;
 import com.taskslistproject.taskslist.repository.TaskRepository;
 
 /**
@@ -166,11 +167,24 @@ public class TaskServiceImpl implements TaskService {
 	
 	/**
 	 * Returns a list of task filtered by the received tasklistID.
+	 * @throws Exception 
 	 */
 	@Override
 	@Transactional(readOnly = true)
-	public List<Task> findByTasklist(Integer tasklistID){
-		return taskRepository.findByTasklist(tasklistID);
+	public List<Task> findByTasklist(Integer tasklistID) throws Exception{
+		
+		//Gets the tasklist
+		Optional<Tasklist> tasklistOptional = tasklistService.findById(tasklistID);
+		
+		//Verifies if the takslist does exist.
+		if(tasklistOptional.isPresent() == false) {
+			
+			//Throws an exception indicating that the tasklist does not exist
+			throw new Exception("The tasklist with ID ["+tasklistID+"] does not exist.");
+			
+		}
+		
+		return taskRepository.findByTasklist(tasklistOptional.get());
 	}
 
 }
