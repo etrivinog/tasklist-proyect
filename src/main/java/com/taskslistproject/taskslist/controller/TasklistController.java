@@ -142,7 +142,7 @@ public class TasklistController {
 			
 			tasklistService.deleteById(id);
 			
-			return ResponseEntity.ok().body(new ResponseMessage("200", "The tasklist was deleted"));
+			return ResponseEntity.ok().body(id);
 			
 		} catch (Exception e) {
 			return ResponseEntity.

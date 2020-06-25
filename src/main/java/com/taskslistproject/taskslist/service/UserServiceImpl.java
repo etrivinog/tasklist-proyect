@@ -44,6 +44,11 @@ public class UserServiceImpl implements UserService {
 			
 			//Throws an exception indicating that there are an user with the same ID
 			throw new Exception("There are already an user with the ID [" + entity.getUserId() + "].");
+		}else if ( entity.getEmail() == null ) {
+			
+			//If the email is null, throws an exception
+			throw new Exception("The email con not be null");
+			
 		}
 		
 		return userRepository.save(entity);

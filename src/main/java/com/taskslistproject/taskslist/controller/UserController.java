@@ -153,7 +153,7 @@ public class UserController {
 			
 			userService.deleteById(id);
 			
-			return ResponseEntity.ok().body(new ResponseMessage("200", "The user was deleted"));
+			return ResponseEntity.ok().body(id);
 			
 		} catch (Exception e) {
 			return ResponseEntity.

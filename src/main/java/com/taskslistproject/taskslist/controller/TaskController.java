@@ -150,10 +150,10 @@ public class TaskController {
 	public ResponseEntity<?> deleteById(@PathVariable("taskId") Integer id) {
 		
 		try {
-			
+
 			taskService.deleteById(id);
 			
-			return ResponseEntity.ok().body(new ResponseMessage("200", "The task was deleted"));
+			return ResponseEntity.ok().body(id);
 			
 		} catch (Exception e) {
 			return ResponseEntity.
